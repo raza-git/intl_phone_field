@@ -49,6 +49,14 @@ class PhoneNumber {
     if (number.length > country.maxLength) {
       throw NumberTooLongException();
     }
+
+    switch (countryCode) {
+    case 'MY': // Malaysia
+        // Accept either 9 or 10 digits after +60
+        final digits = number.replaceAll(RegExp(r'[^0-9]'), '');
+        return digits.length >= 9 && digits.length <= 11;
+      // ... other country cases ...
+    }
     return true;
   }
 
